@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>e-Certificate Verification</title>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      body {
+        font-family: "Verdana", sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+      }
+      /* Topmost Header */
+      .top-header {
+        background: white;
+        padding: 5px 10px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-family: "Verdana", sans-serif;
+      }
+      .top-header a {
+        text-decoration: none;
+        color: #0055a5;
+        margin-left: 10px;
+      }
+      /* Main Navbar */
+      .navbar {
+    background: white;
+    padding: 8px 15px -10px 15px;
+    color: #003366;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #003366; /* Same as in the image */
+}
+
+/* ✅ Left Section (Logo + Title) */
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.navbar img {
+    height: 65px;
+    margin-top: -10px; /* Moves image slightly up */
+    margin-right: 10px;
+}
+
+.navbar span {
+    font-size: 26px;
+    font-weight: bold;
+    font-family:"Arial", sans-serif; 
+    letter-spacing: 0.5px;
+}
+
+/* ✅ Right Section (Links) */
+.right-section a {
+    font-size: 14px;
+    font-family: "Verdana", sans-serif;
+    font-weight: normal;
+    color: #003366;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.right-section a:hover {
+    text-decoration: underline;
+}
+
+      .menu {
+        background: linear-gradient(to bottom, #2980b9, #87ceeb);
+        padding: 0; /* Removes extra padding */
+        display: flex;
+        justify-content: left;
+        align-items: stretch; /* Ensures full height */
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: black;
+        padding: 8px 20px; /* Adjust top-bottom padding to match the section */
+        font-size: 14px;
+        font-weight: bold;
+        border-left: 1px solid #003366; /* Only left border */
+        border-right: 1px solid #003366; /* Only right border */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu a:first-child {
+        border-left: none; /* Removes left border for the first link */
+      }
+
+      .menu a:last-child {
+        border-right: none; /* Removes right border for the last link */
+      }
+
+      .menu a:hover {
+        background: #003366;
+        color: white;
+      }
+
+      /* Dropdown Container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: linear-gradient(to bottom, #2980b9, #87ceeb);
+  min-width: 150px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Dropdown Items */
+.dropdown-content a {
+  color: black;
+  padding: 8px 20px;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #003366;
+}
+
+/* Hover Effect */
+.dropdown-content a:hover {
+  background: #003366;
+  color: white;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+      .container {
+        width: 70%;
+        margin: auto;
+        background: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 15px rgba(41, 128, 185, 0.3);
+        margin-top: 20px;
+      }
+      .header-box {
+        background: linear-gradient(to bottom, #2980b9, #87ceeb);
+        padding: 10px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 5px 5px 0 0;
+        box-shadow: 3px 3px 15px rgba(100, 100, 255, 0.5);
+      }
+      .form-box {
+        padding: 14px;
+        border: 2px solid #003366;
+        background: #f8f8f8;
+        font-weight: bold;
+        box-shadow: 3px 3px 15px rgba(41, 128, 185, 0.3);
+      }
+      input,
+      select {
+        width: 90%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid rgba(41, 128, 185, 0.3);
+        border-radius: 3px;
+        font-size: 14px;
+        
+      }
+      button {
+        background: linear-gradient(to bottom, #2980b9, #87ceeb);
+        color: black;
+        padding: 8px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .info-table {
+        width: 100%;
+        border-collapse: collapse; /* Ensures proper layout */
+        margin-top: 10px;
+        border: 1px solid rgba(41, 128, 185, 0.3); /* Keeps table border */
+        font-family: "Trebuchet MS", sans-serif;
+        font-size: 16px;
+        color: black;
+        box-shadow: 3px 3px 15px rgba(41, 128, 185, 0.3);
+      }
+
+      .info-table th {
+        background: linear-gradient(to bottom, #2980b9, #87ceeb);
+        color: black;
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid rgba(41, 128, 185, 0.3); /* Only horizontal separator */
+      }
+
+      .info-table td {
+        padding: 8px;
+        background: white;
+        text-align: left;
+        border-bottom: 1px solid rgba(41, 128, 185, 0.3); /* Only horizontal separators */
+      }
+
+      /* Keeps the bottom border of the last row */
+      .info-table tr:last-child td {
+        border-bottom: 1px solid rgba(41, 128, 185, 0.3);
+      }
+      .info-table td:first-child{
+        font-weight: bold;
+      }
+
+      .close-btn {
+        background: linear-gradient(to bottom, #2980b9, #87ceeb);
+        color: black;
+        padding: 8px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        display: block;
+        margin: 10px auto;
+      }
+      .right-section a i {
+    font-size: 19px; /* Adjust icon size */
+    color: #0055a5;
+    margin-right: 5px;
+}
+.nested-dropdown-content {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: linear-gradient(to bottom, #2980b9, #87ceeb);
+  min-width: 180px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nested-dropdown:hover .nested-dropdown-content {
+  display: block;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Top Header -->
+    <div class="top-header">
+      <div></div>
+      <div>
+        <span>+A A -A</span>
+        <a href="#">Terms & Conditions</a> |
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="navbar">
+        <div class="left-section">
+          <img src="logo.png" alt="Logo" />
+          <span>Ministry of Skill Development And Entrepreneurship</span>
+        </div>
+        <div class="right-section">
+          <a href="#"><i class="fa-solid fa-envelope"></i>Support</a> | 
+          <a href="#"><i class="fa-solid fa-user"></i>Login</a> | 
+          <a href="#"><i class="fa-solid fa-circle-question"></i>FAQ</a> |
+          <a href="#"><i class="fa-solid fa-circle-question"></i> Help</a> |
+          <a href="#"><i class="fa-solid fa-circle-question"></i>SiteMap</a>
+        </div>
+      </div>
+      
+
+    <!-- Menu Bar -->
+    <div class="menu">
+      <a href="#"> </a>
+      <a href="https://ncvtmis.gov.in/Pages/Home.aspx">Home</a>
+      <div class="dropdown">
+        <a href="#">ITI </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/ITI/Search.aspx">ITI Search</a>
+          <a href="https://ncvtmis.gov.in/Pages/ITI/Search.aspx?feedback">Grading</a>
+          <a href="https://ncvtmis.gov.in/Pages/ITI/TradeStats.aspx">Trade Statictics</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Trainee </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/Search.aspx">Trainee Search</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/PreTrainee_Authentication.aspx">Trainee Verification</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/TraineeGrievanceAuthenticatec_BeforeHT.aspx">Trainee Verification Before HT</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/Authentication.aspx">Trainee Profile</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/NACCertificate.aspx">NAC Legacy Certificate</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/COECertificate.aspx">COE Certificate Download</a>
+          <a href="https://ncvtmis.gov.in/Pages/FlexiMoU/FlexiMoUMarksheetCertificate.aspx">Flexi Marksheet Certificate</a>
+          <a href="https://ncvtmis.gov.in/Pages/FlexiMoU/FlexiMoUMarksheetCertificateSemesterWise.aspx">Flexi Semester Marksheet Certificate</a>
+          <a href="https://ncvtmis.gov.in/Pages/Marksheet/DSTMarksheet.aspx#">DST Marksheet Before 2019/a>
+          <a href="https://ncvtmis.gov.in/Pages/Marksheet/DSTCertificate.aspx#">DST Certificate Before 2019</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/NCICCertificate.aspx#">NCIC Legacy Certificate</a>
+          <a href="https://ncvtmis.gov.in/Pages/Trainee/NTCCertificate.aspx">NTC Legacy Certificate</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Verification </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Certification/Validate.aspx">e-Certificate Verification</a>
+          <a href="https://ncvtmis.gov.in/Pages/Certification/CertifiedTraineeSearch.aspx">Certified Trainee Search</a>
+          <a href="https://ncvtmis.gov.in/Pages/Marksheet/Validate.aspx">Marksheet Verification</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Instructor </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Instructor/Search.aspx">Instructor Search</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Examiner </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Examiner/ExaminerApplicationForm.aspx">Examiner Registeration </a>
+          <a href="https://ncvtmis.gov.in/Pages/Examiner/Validate.aspx">Examiner Activation</a>
+          <a href="https://ncvtmis.gov.in/Pages/Examiner/ExaminerLogin.aspx">Examiner Login</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Calendar </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Calendar/Academic.aspx">Academic Calendar</a>
+          <a href="https://ncvtmis.gov.in/Pages/Calendar/Exam.aspx">Examination Calendar</a>
+        </div>
+      </div>
+      <a href="https://ncvtmis.gov.in/Pages/CFI/Home.aspx">CFI</a>
+      <div class="dropdown">
+        <a href="#">Help </a>
+        <div class="dropdown-content">
+          <a href="#">User Manual</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Dashboard </a>
+        <div class="dropdown-content">
+          <a href="https://ncvtmis.gov.in/Pages/Dashboard/DashboardMain.aspx">DGT Reporting Dashboard</a>
+          <a href="https://ncvtmis.gov.in/Pages/Dashboard/AdmittedTraineeDashboard.aspx">Addmitted Trainee Dashboard</a>
+          <a href="https://ncvtmis.gov.in/Pages/Dashboard/InstructorDashboard.aspx">Instructor Dashboard</a>
+          <a href="https://ncvtmis.gov.in/Pages/Dashboard/AnnualResultDashboard.aspx">Annual Result Dashboard</a>
+          <a href="https://ncvtmis.gov.in/Pages/Dashboard/SemesterResultDashboard.aspx">Semester Result Dashboard</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Complaint Tool </a>
+        <div class="dropdown-content">
+          <a href="https://help.ncvtmis.gov.in/sm/ess.do">Complaint Tool</a>
+          <div class="nested-dropdown">
+            <a href="#">Help Desk </a>
+            <div class="nested-dropdown-content">
+              <a href="#">DGEtSOP HelpDeskort</a>
+              <a href="#">FAQs</a>
+            </div>
+          </div>
+          <div class="nested-dropdown">
+            <a href="#">Grievance</a>
+            <div class="nested-dropdown-content">
+              <a href="#">Log Grievance</a>
+              <a href="#">Grievance view</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-box">e-Certificate Verification</div>
+
+      <div class="form-box">
+        <label>e-Certificate Number</label>
+        <input
+          type="text"
+          placeholder="Enter Number"
+          value="1610032462"
+          readonly
+        />
+        <br />
+        <label>Certificate Type</label>
+        <select>
+          <option>--select--</option>
+          <option>NCVT</option>
+          <option>Apprenticeship</option>
+        </select>
+        <button>Go</button>
+      </div>
+
+      <table class="info-table">
+        <tr>
+          <th colspan="2">Certified Trainee Information</th>
+        </tr>
+        <tr>
+          <td>Trainee Name:</td>
+          <td>Piyush Kumar</td>
+        </tr>
+        <tr>
+          <td>Father Name:</td>
+          <td>Birbal Prasad Sah</td>
+        </tr>
+        <tr>
+          <td>Mother Name:</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Institute:</td>
+          <td>PR10000486-N.E.C Private ITI</td>
+        </tr>
+        <tr>
+          <td>Institute Address:</td>
+          <td>Near Mandal Complex, Chatariya Peer, Kahalgaon</td>
+        </tr>
+        <tr>
+          <td>Trade:</td>
+          <td>Fitter</td>
+        </tr>
+        <tr>
+          <td>Training Duration:</td>
+          <td>Aug-2013 To Jul-2015</td>
+        </tr>
+        <tr>
+          <td>Certified:</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Certificate Issue Date:</td>
+          <td>08-Feb-2018</td>
+        </tr>
+      </table>
+
+      <button class="close-btn">Close</button>
+    </div>
+    <script>
+      document.querySelector(".close-btn").addEventListener("click", function() {
+        window.location.href = "https://ncvtmis.gov.in/Pages/Certification/Validate.aspx";
+      });
+    </script>
+  </body>
+</html>
